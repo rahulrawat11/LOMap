@@ -1,0 +1,422 @@
+<!-- 
+bower install neo4j-driver
+bower install vivagraphjs
+python -m SimpleHTTPServer 8002
+open http://localhost:8002
+ -->
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Neo4j NGraph Test</title>
+    <script src="lib/browser/neo4j-web.min.js"></script>
+    <script src="dist/vivagraph.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+      function onload() {
+        var neo = neo4j.v1;
+        var driver = neo.driver("bolt://localhost", neo.auth.basic("neo4j", "gnow"));
+        var session = driver.session();
+    
+        var dump = { 
+            onNext: function(record) { console.log(record.keys, record.length, record._fields, record._fieldLookup); }, 
+            onCompleted: function() { console.log("Completed"); }, 
+            onError: console.log 
+        }
+    
+        var counter = function() { 
+          var start = Date.now();
+          return {
+            count : 0,
+            onNext: function(r) { this.count++; },
+            onCompleted: function() { console.log("rows",this.count,"took",(Date.now()-start)); }}
+        };
+
+        var graphGenerator = Viva.Graph.generator();
+
+        var graph = graphGenerator.grid();
+        var handleMouseOver = function(node) {
+                       graph.forEachLinkedNode(node.id, function(node, link){
+                           var linkUI = graphics.getLinkUI(link.id);
+                           if (linkUI) {
+                               linkUI.highlight(true);
+                           }
+                       });
+                   };
+
+        var handleMouseLeave = function(node) {
+                       graph.forEachLinkedNode(node.id, function(node, link){
+                           var linkUI = graphics.getLinkUI(link.id);
+                           if (linkUI) {
+                               linkUI.highlight(false);
+                           }
+                       });
+                   };
+
+//layout
+        var layout = Viva.Graph.Layout.forceDirected(graph, {
+           springLength : 30,
+           springCoeff : 0.0008,
+           dragCoeff : 0.01,
+           gravity : -1.2,
+           theta : 1
+       });
+            var graphics = Viva.Graph.View.svgGraphics();
+            var nodeSize = 12;
+
+
+//fpr nodes tweaking
+        graphics.node(
+            function(node) {
+                var ui = Viva.Graph.svg('g'),
+                    nodeColor = node.data.color ? node.data.color : '#00a2e8';
+                //svgText = Viva.Graph.svg('text').attr('y', '-4px').attr('x',
+                //        '-' + (nodeSize / 4) + 'px').text(node.data.label),
+
+                //img = node.data.image ? Viva.Graph.svg('image').attr('width',
+                //        nodeSize).attr('height', nodeSize)
+                //        .link(
+                //                'https://secure.gravatar.com/avatar/'
+                //                        + node.data.image) : Viva.Graph.svg(
+                //        'rect').attr('width', nodeSize)
+                //        .attr('height', nodeSize).attr('fill', nodeColor);
+                
+
+                //ui.append(svgText);
+                //ui.append(img);
+                return ui;
+            }).placeNode(
+                function(nodeUI, pos) {
+                    nodeUI.attr('transform', 'translate(' + (pos.x - nodeSize / 2)
+                        + ',' + (pos.y - nodeSize / 2) + ')');
+                });
+
+
+            // To render an arrow we have to address two problems:
+            //  1. Links should start/stop at node's bounding box, not at the node center.
+            //  2. Render an arrow shape at the end of the link.
+
+            // Rendering arrow shape is achieved by using SVG markers, part of the SVG
+            // standard: http://www.w3.org/TR/SVG/painting.html#Markers
+        var createMarker = function(id) {
+                return Viva.Graph.svg('marker')
+                           .attr('id', id)
+                           .attr('viewBox', "0 0 10 10")
+                           .attr('refX', "10")
+                           .attr('refY', "5")
+                           .attr('markerUnits', "strokeWidth")
+                           .attr('markerWidth', "10")
+                           .attr('markerHeight', "5")
+                           .attr('orient', "auto");
+                },
+
+        marker = createMarker('Triangle');
+        marker.append('path').attr('d', 'M 0 0 L 10 5 L 0 10 z');
+
+        // Marker should be defined only once in <defs> child element of root <svg> element:
+        var defs = graphics.getSvgRoot().append('defs');
+        defs.append(marker);
+        var geom = Viva.Graph.geom();
+
+    //node tweaking for mouseovers
+	graphics.node(function (node) {
+        var ui = Viva.Graph.svg("rect")
+                     .attr("width", 10)
+                     .attr("height", 10)
+                     .attr("fill", "deepskyblue");
+        ui.addEventListener('click', function () {
+            //pin the node by clicking it
+            layout.pinNode(node, !layout.isNodePinned(node));
+            });
+        ui.addEventListener('mouseover', function () {
+            //the node turns red on mouseover                        
+            ui.attr("fill","red");
+            });
+        ui.addEventListener('mouseout', function () {
+            //back to deepskyblue on mouseout
+            ui.attr("fill","deepskyblue");
+            });
+
+        return ui;
+        });
+
+
+
+
+//tweak the links here
+        graphics.link(function(link){
+                // Notice the Triangle marker-end attribe:
+            return Viva.Graph.svg('path')
+                    .attr('stroke', 'black')
+                    .attr('marker-end', 'url(#Triangle)');
+            }).placeLink(function(linkUI, fromPos, toPos) {
+                // Here we should take care about
+                //  "Links should start/stop at node's bounding box, not at the node center."
+
+                // For rectangular nodes Viva.Graph.geom() provides efficient way to find
+                // an intersection point between segment and rectangle
+                var toNodeSize = nodeSize, fromNodeSize = nodeSize;
+
+                var from = geom.intersectRect(
+                        // rectangle:
+                                fromPos.x - fromNodeSize / 2, // left
+                                fromPos.y - fromNodeSize / 2, // top
+                                fromPos.x + fromNodeSize / 2, // right
+                                fromPos.y + fromNodeSize / 2, // bottom
+                        // segment:
+                                fromPos.x, fromPos.y, toPos.x, toPos.y)
+                           || fromPos; // if no intersection found - return center of the node
+
+                var to = geom.intersectRect(
+                        // rectangle:
+                                toPos.x - toNodeSize / 2, // left
+                                toPos.y - toNodeSize / 2, // top
+                                toPos.x + toNodeSize / 2, // right
+                                toPos.y + toNodeSize / 2, // bottom
+                        // segment:
+                                toPos.x, toPos.y, fromPos.x, fromPos.y)
+                            || toPos; // if no intersection found - return center of the node
+
+                var data = 'M' + from.x + ',' + from.y +
+                           'L' + to.x + ',' + to.y;
+
+                linkUI.attr("d", data);
+            });
+
+
+        var renderer = Viva.Graph.View.renderer(graph,
+            {
+                layout     : layout,
+                graphics   : graphics,
+                renderLinks : true,
+                prerender  : true,
+                container: document.getElementById('graph')
+            });
+
+        var count = 0;
+        var finished = 0;
+        var viva = { 
+            onNext: function(record) { 
+                count ++;
+                var n1 = record._fields[0];
+//               console.log(n1);
+                if (record.length == 2) {
+                    graph.addNode(n1);
+                }
+                if (record.length == 2) {
+                    var n2 = record._fields[1];
+                    graph.addLink(n1, n2);
+                }
+                if (record.length == 4) {
+                    var n2 = record._fields[2];
+                    graph.addNode(n1, record._fields[1])
+                    graph.addNode(n2, record._fields[3])
+                    graph.addLink(n1, n2);
+                }
+                  if (count % 5000 == 0) console.log("Currently",count,"links");
+               },
+               onCompleted: function() {
+                console.log("Query finished, currently ",count,"links");
+// render after all data was added 
+//              renderer.run();
+                finished ++;
+                if (finished == 3) {
+                    setTimeout(function() { console.log("Pausing renderer"); renderer.pause(); },10000);
+                }
+               }
+            };
+            function query(pattern, limit) {
+                limit = limit||10000;
+                var statement = "MATCH "+pattern+" RETURN id(from) as n, from.type as nt, id(to) as m, to.type as mt LIMIT "+limit;
+                console.log("Running",statement);
+                session.run(statement).subscribe(viva);
+            }
+//          session.run("CYPHER runtime=compiled MATCH (n) RETURN id(n) as id LIMIT 10").subscribe(viva);
+            query("(to:Topic)<--(from:Topic)",1000);
+            query("(to:Topic)<--(from:Topic)",100000);
+            renderer.run(); // render incrementally as data is added 
+            document.body.addEventListener('keydown', function (e) {
+                    if (e.which === 32) { // spacebar
+                        renderer.reset();
+                    }
+                });
+    }
+    
+
+
+    // Lets start from the easiest part - model object for node ui in webgl
+    function svgGraphics(size, color) {
+        this.size = size;
+        this.color = color;
+    }
+
+    // Next comes the hard part - implementation of API for custom shader
+    // program, used by webgl renderer:
+    function buildCircleNodeShader() {
+        // For each primitive we need 4 attributes: x, y, color and size.
+        var ATTRIBUTES_PER_PRIMITIVE = 4,
+            nodesFS = [
+            'precision mediump float;',
+            'varying vec4 color;',
+
+            'void main(void) {',
+            '   if ((gl_PointCoord.x - 0.5) * (gl_PointCoord.x - 0.5) + (gl_PointCoord.y - 0.5) * (gl_PointCoord.y - 0.5) < 0.25) {',
+            '     gl_FragColor = color;',
+            '   } else {',
+            '     gl_FragColor = vec4(0);',
+            '   }',
+            '}'].join('\n'),
+            nodesVS = [
+            'attribute vec2 a_vertexPos;',
+            // Pack color and size into vector. First elemnt is color, second - size.
+            // Since it's floating point we can only use 24 bit to pack colors...
+            // thus alpha channel is dropped, and is always assumed to be 1.
+            'attribute vec2 a_customAttributes;',
+            'uniform vec2 u_screenSize;',
+            'uniform mat4 u_transform;',
+            'varying vec4 color;',
+
+            'void main(void) {',
+            '   gl_Position = u_transform * vec4(a_vertexPos/u_screenSize, 0, 1);',
+            '   gl_PointSize = a_customAttributes[1] * u_transform[0][0];',
+            '   float c = a_customAttributes[0];',
+            '   color.b = mod(c, 256.0); c = floor(c/256.0);',
+            '   color.g = mod(c, 256.0); c = floor(c/256.0);',
+            '   color.r = mod(c, 256.0); c = floor(c/256.0); color /= 255.0;',
+            '   color.a = 1.0;',
+            '}'].join('\n');
+
+        var program,
+            gl,
+            buffer,
+            locations,
+            utils,
+            nodes = new Float32Array(64),
+            nodesCount = 0,
+            canvasWidth, canvasHeight, transform,
+            isCanvasDirty;
+
+        return {
+            /**
+             * Called by webgl renderer to load the shader into gl context.
+             */
+            load : function (glContext) {
+                gl = glContext;
+                webglUtils = Viva.Graph.webgl(glContext);
+
+                program = webglUtils.createProgram(nodesVS, nodesFS);
+                gl.useProgram(program);
+                locations = webglUtils.getLocations(program, ['a_vertexPos', 'a_customAttributes', 'u_screenSize', 'u_transform']);
+
+                gl.enableVertexAttribArray(locations.vertexPos);
+                gl.enableVertexAttribArray(locations.customAttributes);
+
+                buffer = gl.createBuffer();
+            },
+
+            /**
+             * Called by webgl renderer to update node position in the buffer array
+             *
+             * @param nodeUI - data model for the rendered node (WebGLCircle in this case)
+             * @param pos - {x, y} coordinates of the node.
+             */
+            position : function (nodeUI, pos) {
+                var idx = nodeUI.id;
+                nodes[idx * ATTRIBUTES_PER_PRIMITIVE] = pos.x;
+                nodes[idx * ATTRIBUTES_PER_PRIMITIVE + 1] = -pos.y;
+                nodes[idx * ATTRIBUTES_PER_PRIMITIVE + 2] = nodeUI.color;
+                nodes[idx * ATTRIBUTES_PER_PRIMITIVE + 3] = nodeUI.size;
+            },
+
+            /**
+             * Request from webgl renderer to actually draw our stuff into the
+             * gl context. This is the core of our shader.
+             */
+            render : function() {
+                gl.useProgram(program);
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.bufferData(gl.ARRAY_BUFFER, nodes, gl.DYNAMIC_DRAW);
+
+                if (isCanvasDirty) {
+                    isCanvasDirty = false;
+                    gl.uniformMatrix4fv(locations.transform, false, transform);
+                    gl.uniform2f(locations.screenSize, canvasWidth, canvasHeight);
+                }
+
+                gl.vertexAttribPointer(locations.vertexPos, 2, gl.FLOAT, false, ATTRIBUTES_PER_PRIMITIVE * Float32Array.BYTES_PER_ELEMENT, 0);
+                gl.vertexAttribPointer(locations.customAttributes, 2, gl.FLOAT, false, ATTRIBUTES_PER_PRIMITIVE * Float32Array.BYTES_PER_ELEMENT, 2 * 4);
+
+                gl.drawArrays(gl.POINTS, 0, nodesCount);
+            },
+
+            /**
+             * Called by webgl renderer when user scales/pans the canvas with nodes.
+             */
+            updateTransform : function (newTransform) {
+                transform = newTransform;
+                isCanvasDirty = true;
+            },
+
+            /**
+             * Called by webgl renderer when user resizes the canvas with nodes.
+             */
+            updateSize : function (newCanvasWidth, newCanvasHeight) {
+                canvasWidth = newCanvasWidth;
+                canvasHeight = newCanvasHeight;
+                isCanvasDirty = true;
+            },
+
+            /**
+             * Called by webgl renderer to notify us that the new node was created in the graph
+             */
+            createNode : function (node) {
+                nodes = webglUtils.extendArray(nodes, nodesCount, ATTRIBUTES_PER_PRIMITIVE);
+                nodesCount += 1;
+            },
+
+            /**
+             * Called by webgl renderer to notify us that the node was removed from the graph
+             */
+            removeNode : function (node) {
+                if (nodesCount > 0) { nodesCount -=1; }
+
+                if (node.id < nodesCount && nodesCount > 0) {
+                    // we do not really delete anything from the buffer.
+                    // Instead we swap deleted node with the "last" node in the
+                    // buffer and decrease marker of the "last" node. Gives nice O(1)
+                    // performance, but make code slightly harder than it could be:
+                    webglUtils.copyArrayPart(nodes, node.id*ATTRIBUTES_PER_PRIMITIVE, nodesCount*ATTRIBUTES_PER_PRIMITIVE, ATTRIBUTES_PER_PRIMITIVE);
+                }
+            },
+
+            /**
+             * This method is called by webgl renderer when it changes parts of its
+             * buffers. We don't use it here, but it's needed by API (see the comment
+             * in the removeNode() method)
+             */
+            replaceProperties : function(replacedNode, newNode) {},
+        };
+
+    }
+    </script>
+    <style type="text/css" media="screen">
+        html, body, svg { width: 100%; height: 100%;}
+    </style>
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body id="index" onload="onload();">
+    <div id="graph" style="width:100%;height:100%;background-color: white;"></div>
+</body>
+</html>

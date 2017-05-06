@@ -1,0 +1,550 @@
+[
+  {
+    "signature": "Group/VideoFile/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile/Group",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Group/VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "Group/File",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Group/File",
+    "flags": 0
+  },
+  {
+    "signature": "Group/File/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "File/Group",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/File/Group",
+    "flags": 0
+  },
+  {
+    "signature": "File/Group/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Group/Folder",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Group/Folder",
+    "flags": 0
+  },
+  {
+    "signature": "Group/Folder/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Folder/Group",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Folder/Group",
+    "flags": 0
+  },
+  {
+    "signature": "Folder/Group/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Group/Image",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Group/Image",
+    "flags": 0
+  },
+  {
+    "signature": "Group/Image/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Image/Group",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Image/Group",
+    "flags": 0
+  },
+  {
+    "signature": "Image/Group/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Group/VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile/Group/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/VideoFile/Group",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Folder",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/Folder",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Folder/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Folder/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Folder/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "Folder/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Image",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/Image",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Image/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Image/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Image/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "Image/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/VideoFile/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/VideoFile/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Assessment/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Assessment/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "Assessment/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Assessment",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/Assessment",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Assessment/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Assessment",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Assessment",
+    "flags": 0
+  },
+  {
+    "signature": "Assessment/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "DataFeed",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/DataFeed",
+    "flags": 0
+  },
+  {
+    "signature": "DataFeed/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItem",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/FeedItem",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItem/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItemContent",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/FeedItemContent",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItemContent/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItemEnclosure",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/FeedItemEnclosure",
+    "flags": 0
+  },
+  {
+    "signature": "FeedItemEnclosure/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "File",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/File",
+    "flags": 0
+  },
+  {
+    "signature": "File/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Folder",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Folder",
+    "flags": 0
+  },
+  {
+    "signature": "Folder/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Group",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Group",
+    "flags": 0
+  },
+  {
+    "signature": "Group/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Image",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Image",
+    "flags": 0
+  },
+  {
+    "signature": "Image/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "KeyWord",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/KeyWord",
+    "flags": 0
+  },
+  {
+    "signature": "KeyWord/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "MailTemplate",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/MailTemplate",
+    "flags": 0
+  },
+  {
+    "signature": "MailTemplate/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "ODSExporter",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/ODSExporter",
+    "flags": 0
+  },
+  {
+    "signature": "ODSExporter/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "ODTExporter",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/ODTExporter",
+    "flags": 0
+  },
+  {
+    "signature": "ODTExporter/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Page",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Page",
+    "flags": 0
+  },
+  {
+    "signature": "Page/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "PaymentItemNode",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/PaymentItemNode",
+    "flags": 0
+  },
+  {
+    "signature": "PaymentItemNode/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "PaymentNode",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/PaymentNode",
+    "flags": 0
+  },
+  {
+    "signature": "PaymentNode/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Topic",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Topic",
+    "flags": 0
+  },
+  {
+    "signature": "Topic/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "User",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/User",
+    "flags": 0
+  },
+  {
+    "signature": "User/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/VideoFile",
+    "flags": 0
+  },
+  {
+    "signature": "VideoFile/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Widget",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Widget",
+    "flags": 0
+  },
+  {
+    "signature": "Widget/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "XMPPClient",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/XMPPClient",
+    "flags": 0
+  },
+  {
+    "signature": "XMPPClient/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/File",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/File",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/File/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "File/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/File/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "File/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Topic",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Asset/Topic",
+    "flags": 0
+  },
+  {
+    "signature": "Asset/Topic/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Topic/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Topic/Asset",
+    "flags": 0
+  },
+  {
+    "signature": "Topic/Asset/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "KeyWord/Image",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/KeyWord/Image",
+    "flags": 0
+  },
+  {
+    "signature": "KeyWord/Image/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Image/KeyWord",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Image/KeyWord",
+    "flags": 0
+  },
+  {
+    "signature": "Image/KeyWord/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "Topic/Topic",
+    "flags": 0
+  },
+  {
+    "signature": "_schema/Topic/Topic",
+    "flags": 0
+  },
+  {
+    "signature": "Topic/Topic/_Ui",
+    "flags": 0
+  },
+  {
+    "signature": "_logout",
+    "flags": 4
+  },
+  {
+    "signature": "_login",
+    "flags": 64
+  }
+]

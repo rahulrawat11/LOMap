@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- @structr:link(/favicon.ico_2017-03-08-121918) -->
+		<link href="${link.path}?${link.version}" rel="icon">
+		<title>Jumbotron Template for Bootstrap</title><!-- Bootstrap core CSS -->
+		<!-- @structr:link(/dist/css/bootstrap.min.css_2017-03-08-121919) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:link(/assets/css/ie10-viewport-bug-workaround.css_2017-03-08-121930) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Custom styles for this template -->
+		<!-- @structr:link(/jumbotron.css) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Just for debugging purposes. Don't actually copy these 2 lines! --><!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<!-- @structr:link(/assets/js/ie-emulation-modes-warning.js_2017-03-08-121933) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle collapsed" type="button" data-target="#navbar" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">User Registration</a>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar"></div><!--/.navbar-collapse -->
+			</div>
+		</nav><!-- Main jumbotron for a primary marketing message or call to action --><!-- /container --><!-- Bootstrap core JavaScript
+    ================================================== --><!-- Placed at the end of the document so the pages load faster -->
+		<!-- @structr:link(/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js_2017-03-08-121935) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+		<!-- @structr:link(/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js_2017-03-08-121935) -->
+		<script type="text/javascript"><!-- @structr:content(text/javascript) -->window.jQuery || document.write(&#39;&lt;script src=&quot;../../assets/js/vendor/jquery.min.js&quot;&gt;&lt;\/script&gt;&#39;)</script>
+		<!-- @structr:link(/dist/js/bootstrap.min.js_2017-03-08-121936) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:link(/assets/js/ie10-viewport-bug-workaround.js_2017-03-08-121938) -->
+		<script src="${link.path}" type="text/javascript"></script>
+		<!-- @structr:private -->
+		<div class="panel panel-default">
+			<!-- @structr:private -->
+			<div class="panel-heading">
+				<!-- @structr:private -->
+				<h2><!-- @structr:private -->Register Here</h2>
+			</div>
+			<!-- @structr:private -->
+			<div class="panel-body" data-structr-id="${user.id}">
+				<!-- @structr:private -->
+				<div class="form-group" data-structr-attr="name">
+					<!-- @structr:private -->
+					<label><!-- @structr:private -->Name 
+						<!-- @structr:private -->
+						<br>
+					</label>
+					<!-- @structr:private -->
+					<input class="form-control" type="text" data-structr-name="name">
+				</div>
+				<!-- @structr:private -->
+				<div class="form-group" data-structr-attr="eMail">
+					<!-- @structr:private -->
+					<label><!-- @structr:private -->E Mail ID
+						<!-- @structr:private -->
+						<br>
+					</label>
+					<!-- @structr:private -->
+					<input class="form-control" placeholder="" type="text" data-structr-name="eMail">
+				</div>
+				<div class="form-group" data-structr-attr="password">
+					<!-- @structr:private -->
+					<label><!-- @structr:private -->Enter a Password
+						<!-- @structr:private -->
+						<br>
+					</label>
+					<input class="form-control" placeholder="Password" type="password" data-structr-name="password">
+				</div>
+				<!-- @structr:private -->
+				<div class="form-group">
+					<!-- @structr:private -->
+					<button class="btn btn-default" data-structr-action="create:User" data-structr-attributes="name, eMail, password" data-structr-reload="true"><!-- @structr:private -->Create</button>
+				</div>
+				<!-- @structr:private -->
+				<div class="alert alert-success alert-dismissable info-box success hidden" data-structr-dialog="success">
+					<!-- @structr:private -->
+					<button class="close" type="button" data-dismiss="alert"><!-- @structr:private -->×</button>
+				</div>
+				<!-- @structr:private -->
+				<div class="alert alert-warning alert-dismissable info-box error hidden" data-structr-dialog="error">
+					<!-- @structr:private -->
+					<button class="close" type="button" data-dismiss="alert"><!-- @structr:private -->×</button>
+				</div>
+				<!-- @structr:private -->
+				<form class="form-signin" role="form">
+					<!-- @structr:private -->
+					<h2 class="form-signin-heading"><!-- @structr:private -->Already registered? Log in here</h2>
+					<!-- @structr:private -->
+					<input class="form-control" id="login-name" autofocus="" placeholder="E-mail address or Username" required="" type="email">
+					<!-- @structr:private -->
+					<input class="form-control" id="login-password" placeholder="Password" required="" type="password">
+					<!-- @structr:private -->
+					<button class="btn btn-lg btn-primary btn-block disabled" id="login-button" disabled="disabled" type="submit" data-structr-return="/Topics/"><!-- @structr:private -->Sign in</button>
+					<!-- @structr:private -->
+					<div id="msg"></div>
+					<!-- @structr:private -->
+					<script type="text/javascript"><!-- @structr:private, @structr:content(text/javascript) -->if (!window.jQuery) { document.write(&#39;&lt;script src=&quot;/structr/js/lib/jquery-1.11.1.min.js&quot;&gt;&lt;\/script&gt;&#39;); }</script>
+					<!-- @structr:private -->
+					<script type="text/javascript"><!-- @structr:private, @structr:content(text/javascript) -->
+
+$(&#39;.form-signin input&#39;).keyup(function (e) {
+
+  if (nonEmpty([$(&#39;#login-name&#39;), $(&#39;#login-password&#39;)])) {
+    enableButton($(&#39;#login-button&#39;));
+  } else {
+    disableButton($(&#39;#login-button&#39;));
+    return;
+  }
+
+  if (e.which == 13) {
+    e.preventDefault();
+    $(&#39;#login-button&#39;).click();
+  }
+
+});
+
+$(&#39;#login-password&#39;).keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    $(&#39;#login-button&#39;).click();
+  }
+});
+
+$(&#39;#login-button&#39;).on(&#39;click&#39;, function() {
+
+  var btn = $(this);
+  $(&#39;#msg span&#39;).remove();
+
+  var btnText = btn.text();
+
+  disableButton(btn, &#39;Checking...&#39;);
+
+  $.ajax({
+    type:&#39;POST&#39;,
+    method:&#39;POST&#39;,
+    contentType:&#39;application/json&#39;,
+    url:&#39;/structr/rest/login&#39;,
+    data: JSON.stringify({ name: $(&#39;#login-name&#39;).val().toLowerCase(), password: $(&#39;#login-password&#39;).val() }),
+    statusCode : {
+      200: function(data) {
+        var type = data.result.type;
+        var btn = $(&#39;#login-button&#39;);
+        btn.text(&#39;Success!&#39;);
+        document.location.href = &#39;/&#39;;
+      },
+      401: function() {
+        var btn = $(&#39;#login-button&#39;);
+        $(&#39;#msg&#39;).append(&#39;&lt;span&gt;Wrong username or password.&lt;/span&gt;&#39;);
+        $(&#39;#msg span&#39;).delay(1000).fadeOut(1000);
+        enableButton(btn);
+      }
+    }
+  });
+
+  //return false;
+});
+
+function nonEmpty(fields) {
+  var filled = true;
+  $.each(fields, function(i, field) {
+    filled = filled &amp;&amp; $(field).val();
+  });
+  return filled;
+}
+
+function enableButton(btn, altText) {
+  btn.removeClass(&#39;disabled&#39;);
+  btn.removeAttr(&#39;disabled&#39;);
+  var oldText = btn.attr(&#39;data-old-text&#39;);
+  if (oldText) {
+    btn.text(oldText);
+    btn.removeAttr(&#39;data-old-text&#39;);
+  }
+}
+
+function disableButton(btn, altText) {
+  btn.addClass(&#39;disabled&#39;);
+  btn.attr(&#39;disabled&#39;, &#39;disabled&#39;);
+  if (altText) {
+    btn.attr(&#39;data-old-text&#39;, btn.text());
+    btn.text(altText);
+  }
+}
+  </script>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

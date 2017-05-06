@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- @structr:link(/favicon.ico_2017-02-23-093833) -->
+		<link href="${link.path}?${link.version}" rel="icon">
+		<title>Jumbotron Template for Bootstrap</title><!-- Bootstrap core CSS -->
+		<!-- @structr:link(/dist/css/bootstrap.min.css_2017-02-23-093834) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:link(/assets/css/ie10-viewport-bug-workaround.css_2017-02-23-093842) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Custom styles for this template -->
+		<!-- @structr:link(/jumbotron.css) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Just for debugging purposes. Don't actually copy these 2 lines! --><!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<!-- @structr:link(/assets/js/ie-emulation-modes-warning.js_2017-02-23-093843) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body data-structr-meta-name="body">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle collapsed" type="button" data-target="#navbar" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">Dependency builder/editor</a>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar"></div><!--/.navbar-collapse -->
+			</div>
+		</nav><!-- Main jumbotron for a primary marketing message or call to action -->
+		<!-- @structr:private -->
+		<div></div>
+		<div class="jumbotron">
+			<div class="container">
+				<!-- @structr:private -->
+				<small>
+					<p data-structr-meta-name="p"><!-- @structr:private --><a href="/Topics/"><!-- @structr:private -->Topics</a><!-- @structr:private --> &gt; <!-- @structr:private, @structr:content(text/html) -->${current.name}</p>
+				</small>
+				<h1 data-structr-meta-name="h1"><!-- @structr:content(text/html) -->&lt;p&gt;Click on edit to create prerequisite linkages between Learning Outcomes. We can also use this page to make changes to a Learning Outcome.&lt;/p&gt;</h1>
+			</div>
+		</div>
+		<div class="container" data-structr-id="${topic.id}"><!-- Example row of columns -->
+			<!-- @structr:private -->
+			<h3 data-structr-attr="name"><!-- @structr:private, @structr:content(text/html) -->${current.name}</h3><!-- @structr:private, @structr:content(text/html) -->&lt;strong&gt;Description&lt;/strong&gt;
+			<!-- @structr:private -->
+			<p data-structr-attr="description"><!-- @structr:private -->${current.description}</p><!-- @structr:private, @structr:content(text/html) -->&lt;strong&gt;Prerequisite for this Learning Outcome&lt;/strong&gt;
+			<!-- @structr:private -->
+			<p data-structr-attr="hasRequisite" data-structr-type="Topic[]"><!-- @structr:private --><a href=""><!-- @structr:private, @structr:content(text/html) -->${each(current.hasRequisite,print(&#39;&lt;a href=&quot;/Topic/&#39; + data.id + &#39;&quot;&gt;&#39; + data.name + &#39;&lt;/a&gt;&#39; , &quot;&lt;br&gt;&quot;)
+)}</a></p><!-- @structr:private, @structr:content(text/html) -->&lt;strong&gt;Learning Outcome is required for:&lt;/strong&gt;
+			<!-- @structr:private -->
+			<p data-structr-attr="requisiteOf" data-structr-type="Topic[]"><!-- @structr:private --><a href=""><!-- @structr:private, @structr:content(text/html) -->${each(current.requisiteOf,print(&#39;&lt;a href=&quot;/Topic/&#39; + data.id + &#39;&quot;&gt;&#39; + data.name + &#39;&lt;/a&gt;&#39; , &quot;&lt;br&gt;&quot;)
+)}</a></p>
+			<!-- @structr:private -->
+			<button class="btn btn-default" data-structr-action="edit:Topic" data-structr-attributes="name,description, hasRequisite, requisiteOf" data-structr-confirm="true" data-structr-id="${current.id}" data-structr-reload="true"><!-- @structr:private --> Edit </button>
+			<!-- @structr:private -->
+			<button class="btn btn-danger" data-structr-action="delete:Topic" data-structr-id="${current.id}" data-structr-reload="true" data-structr-return="/Topics/"><!-- @structr:private --> Delete </button>
+			<!-- @structr:private -->
+			<hr>
+			<footer>
+				<p>© 2016 Company, Inc.</p>
+			</footer>
+		</div><!-- /container --><!-- Bootstrap core JavaScript
+    ================================================== --><!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript"><!-- @structr:content(text/javascript) -->window.jQuery || document.write(&#39;&lt;script src=&quot;../../assets/js/vendor/jquery.min.js&quot;&gt;&lt;\/script&gt;&#39;)
+			<hr>
+		</script>
+		<!-- @structr:link(/dist/js/bootstrap.min.js_2017-02-23-093851) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:link(/assets/js/ie10-viewport-bug-workaround.js_2017-02-23-093851) -->
+		<script src="${link.path}" type="text/javascript"></script>
+	</body>
+</html>

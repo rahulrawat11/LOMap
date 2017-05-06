@@ -1,0 +1,307 @@
+{
+  "definitions": {
+    "Assessment": {
+      "properties": {
+        "assesses": {
+          "$link": "#/definitions/AssessmentAssessesAsset",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AssessmentAssessesAsset": {
+      "$source": "#/definitions/Assessment",
+      "$target": "#/definitions/Asset",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "Assesses",
+      "sourceName": "assessedBy",
+      "targetName": "assesses",
+      "type": "object"
+    },
+    "Asset": {
+      "properties": {
+        "assessedBy": {
+          "$link": "#/definitions/AssessmentAssessesAsset",
+          "items": {
+            "$ref": "#/definitions/Assessment"
+          },
+          "type": "array"
+        },
+        "hasContent": {
+          "$link": "#/definitions/AssethasContentVideoFile",
+          "items": {
+            "$ref": "#/definitions/VideoFile"
+          },
+          "type": "array"
+        },
+        "meets": {
+          "$link": "#/definitions/AssetmeetsTopic",
+          "items": {
+            "$ref": "#/definitions/Topic"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AssethasContentFile": {
+      "$source": "#/definitions/Asset",
+      "$target": "#/definitions/File",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "hasContent",
+      "sourceName": "contentOf",
+      "targetName": "hasContent",
+      "type": "object"
+    },
+    "AssethasContentFolder": {
+      "$source": "#/definitions/Asset",
+      "$target": "#/definitions/Folder",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "hasContent",
+      "sourceName": "contentOf",
+      "targetName": "hasContent",
+      "type": "object"
+    },
+    "AssethasContentImage": {
+      "$source": "#/definitions/Asset",
+      "$target": "#/definitions/Image",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "hasContent",
+      "sourceName": "contentOf",
+      "targetName": "hasContent",
+      "type": "object"
+    },
+    "AssethasContentVideoFile": {
+      "$source": "#/definitions/Asset",
+      "$target": "#/definitions/VideoFile",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "hasContent",
+      "sourceName": "contentOf",
+      "targetName": "hasContent",
+      "type": "object"
+    },
+    "AssetmeetsTopic": {
+      "$source": "#/definitions/Asset",
+      "$target": "#/definitions/Topic",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "meets",
+      "sourceName": "metBy",
+      "targetName": "meets",
+      "type": "object"
+    },
+    "DataFeed": {
+      "$extends": "https://structr.org/v1.1/definitions/DataFeed",
+      "type": "object"
+    },
+    "FeedItem": {
+      "$extends": "https://structr.org/v1.1/definitions/FeedItem",
+      "type": "object"
+    },
+    "FeedItemContent": {
+      "$extends": "https://structr.org/v1.1/definitions/FeedItemContent",
+      "type": "object"
+    },
+    "FeedItemEnclosure": {
+      "$extends": "https://structr.org/v1.1/definitions/FeedItemEnclosure",
+      "type": "object"
+    },
+    "File": {
+      "$extends": "https://structr.org/v1.1/definitions/FileBase",
+      "properties": {
+        "contentOf": {
+          "$link": "#/definitions/AssethasContentFile",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Folder": {
+      "$extends": "https://structr.org/v1.1/definitions/Folder",
+      "properties": {
+        "contentOf": {
+          "$link": "#/definitions/AssethasContentFolder",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Group": {
+      "$extends": "https://structr.org/v1.1/definitions/Group",
+      "type": "object"
+    },
+    "Image": {
+      "$extends": "https://structr.org/v1.1/definitions/Image",
+      "properties": {
+        "contentOf": {
+          "$link": "#/definitions/AssethasContentImage",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        },
+        "iconOf": {
+          "$link": "#/definitions/KeyWordhasIconImage",
+          "items": {
+            "$ref": "#/definitions/KeyWord"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "KeyWord": {
+      "properties": {
+        "hasIcon": {
+          "$link": "#/definitions/KeyWordhasIconImage",
+          "items": {
+            "$ref": "#/definitions/Image"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "KeyWordhasIconImage": {
+      "$source": "#/definitions/KeyWord",
+      "$target": "#/definitions/Image",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "hasIcon",
+      "sourceName": "iconOf",
+      "targetName": "hasIcon",
+      "type": "object"
+    },
+    "MailTemplate": {
+      "$extends": "https://structr.org/v1.1/definitions/MailTemplate",
+      "type": "object"
+    },
+    "ODSExporter": {
+      "$extends": "https://structr.org/v1.1/definitions/ODSExporter",
+      "type": "object"
+    },
+    "ODTExporter": {
+      "$extends": "https://structr.org/v1.1/definitions/ODTExporter",
+      "type": "object"
+    },
+    "Page": {
+      "$extends": "https://structr.org/v1.1/definitions/Page",
+      "type": "object"
+    },
+    "PaymentItemNode": {
+      "$extends": "https://structr.org/v1.1/definitions/PaymentItemNode",
+      "type": "object"
+    },
+    "PaymentNode": {
+      "$extends": "https://structr.org/v1.1/definitions/PaymentNode",
+      "type": "object"
+    },
+    "Topic": {
+      "properties": {
+        "description": {
+          "indexed": true,
+          "type": "string"
+        },
+        "hasRequisite": {
+          "$link": "#/definitions/TopicrequiresTopic",
+          "items": {
+            "$ref": "#/definitions/Topic"
+          },
+          "type": "array"
+        },
+        "metBy": {
+          "$link": "#/definitions/AssetmeetsTopic",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        },
+        "requisiteOf": {
+          "$link": "#/definitions/TopicrequiresTopic",
+          "items": {
+            "$ref": "#/definitions/Topic"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "views": {
+        "ui": [
+          "description"
+        ]
+      }
+    },
+    "TopicrequiresTopic": {
+      "$source": "#/definitions/Topic",
+      "$target": "#/definitions/Topic",
+      "cascade": {
+        "create": "always",
+        "delete": "always"
+      },
+      "rel": "requires",
+      "sourceName": "requisiteOf",
+      "targetName": "hasRequisite",
+      "type": "object"
+    },
+    "User": {
+      "$extends": "https://structr.org/v1.1/definitions/User",
+      "methods": {
+        "onCreate()": {
+          "comment": "",
+          "source": "(\nset(this, \u0027isAdmin\u0027, true),\nset(this, \u0027Members\u0027, \u0027Admins\u0027)\n)"
+        }
+      },
+      "type": "object"
+    },
+    "VideoFile": {
+      "$extends": "https://structr.org/v1.1/definitions/VideoFile",
+      "properties": {
+        "contentOf": {
+          "$link": "#/definitions/AssethasContentVideoFile",
+          "items": {
+            "$ref": "#/definitions/Asset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Widget": {
+      "$extends": "https://structr.org/v1.1/definitions/Widget",
+      "type": "object"
+    },
+    "XMPPClient": {
+      "$extends": "https://structr.org/v1.1/definitions/XMPPClient",
+      "type": "object"
+    }
+  },
+  "id": "https://structr.org/schema/045bc7c653134fe18667f7b3a9b9e67d/#"
+}

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-target="#navbar" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#">${page.name}</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar">
+			<!-- @structr:public-only -->
+			<form class="navbar-form navbar-right" data-structr-id="${user.id}">
+				<div class="form-group">
+					<input class="form-control" placeholder="name" type="text" data-structr-name="name">
+				</div>
+				<div class="form-group">
+					<input class="form-control" placeholder="Password" type="password" data-structr-name="password">
+				</div>
+				<button class="btn btn-success" type="submit" data-structr-action="login" data-structr-attributes="name, password" data-structr-reload="true">Sign in</button>
+			</form>
+			<button class="btn btn-danger" data-structr-action="logout" data-structr-reload="true" data-structr-return="/Topics/"><!-- @structr:private --><i class="fa fa-sign-out fa-fw"></i><!-- @structr:private --><span class="glyphicon glyphicon-logout"></span><!-- @structr:private --> Sign-out</button>
+		</div><!--/.navbar-collapse -->
+	</div>
+</nav>

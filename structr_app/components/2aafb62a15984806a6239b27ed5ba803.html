@@ -1,0 +1,86 @@
+<!-- @structr:private --><script type="text/javascript"><!-- @structr:private, @structr:content(text/javascript) -->
+
+$(&#39;.form-signin input&#39;).keyup(function (e) {
+
+  if (nonEmpty([$(&#39;#login-name&#39;), $(&#39;#login-password&#39;)])) {
+    enableButton($(&#39;#login-button&#39;));
+  } else {
+    disableButton($(&#39;#login-button&#39;));
+    return;
+  }
+
+  if (e.which == 13) {
+    e.preventDefault();
+    $(&#39;#login-button&#39;).click();
+  }
+
+});
+
+$(&#39;#login-password&#39;).keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    $(&#39;#login-button&#39;).click();
+  }
+});
+
+$(&#39;#login-button&#39;).on(&#39;click&#39;, function() {
+
+  var btn = $(this);
+  $(&#39;#msg span&#39;).remove();
+
+  var btnText = btn.text();
+
+  disableButton(btn, &#39;Checking...&#39;);
+
+  $.ajax({
+    type:&#39;POST&#39;,
+    method:&#39;POST&#39;,
+    contentType:&#39;application/json&#39;,
+    url:&#39;/structr/rest/login&#39;,
+    data: JSON.stringify({ name: $(&#39;#login-name&#39;).val().toLowerCase(), password: $(&#39;#login-password&#39;).val() }),
+    statusCode : {
+      200: function(data) {
+        var type = data.result.type;
+        var btn = $(&#39;#login-button&#39;);
+        btn.text(&#39;Success!&#39;);
+        document.location.href = &#39;/&#39;;
+      },
+      401: function() {
+        var btn = $(&#39;#login-button&#39;);
+        $(&#39;#msg&#39;).append(&#39;&lt;span&gt;Wrong username or password.&lt;/span&gt;&#39;);
+        $(&#39;#msg span&#39;).delay(1000).fadeOut(1000);
+        enableButton(btn);
+      }
+    }
+  });
+
+  //return false;
+});
+
+function nonEmpty(fields) {
+  var filled = true;
+  $.each(fields, function(i, field) {
+    filled = filled &amp;&amp; $(field).val();
+  });
+  return filled;
+}
+
+function enableButton(btn, altText) {
+  btn.removeClass(&#39;disabled&#39;);
+  btn.removeAttr(&#39;disabled&#39;);
+  var oldText = btn.attr(&#39;data-old-text&#39;);
+  if (oldText) {
+    btn.text(oldText);
+    btn.removeAttr(&#39;data-old-text&#39;);
+  }
+}
+
+function disableButton(btn, altText) {
+  btn.addClass(&#39;disabled&#39;);
+  btn.attr(&#39;disabled&#39;, &#39;disabled&#39;);
+  if (altText) {
+    btn.attr(&#39;data-old-text&#39;, btn.text());
+    btn.text(altText);
+  }
+}
+  </script>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- @structr:protected --><html lang="en">
+	<!-- @structr:protected -->
+	<head>
+		<!-- @structr:protected -->
+		<meta charset="utf-8">
+		<!-- @structr:protected -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- @structr:protected -->
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<!-- @structr:protected -->
+		<meta name="description" content="">
+		<!-- @structr:protected -->
+		<meta name="author" content="">
+		<!-- @structr:protected, @structr:link(/favicon.ico_2017-02-22-183812) -->
+		<link href="${link.path}?${link.version}" rel="icon">
+		<!-- @structr:protected -->
+		<title><!-- @structr:protected -->Jumbotron Template for Bootstrap</title><!-- Bootstrap core CSS -->
+		<!-- @structr:protected, @structr:link(/dist/css/bootstrap.min.css_2017-02-22-183813) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:protected, @structr:link(/assets/css/ie10-viewport-bug-workaround.css_2017-02-22-183822) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Custom styles for this template -->
+		<!-- @structr:protected, @structr:link(/jumbotron.css) -->
+		<link href="${link.path}?${link.version}" rel="stylesheet"><!-- Just for debugging purposes. Don't actually copy these 2 lines! --><!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<!-- @structr:protected, @structr:link(/assets/js/ie-emulation-modes-warning.js_2017-02-22-183824) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<!-- @structr:protected -->
+	<body data-structr-meta-name="body">
+		<!-- @structr:protected -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<!-- @structr:protected -->
+			<div class="container">
+				<!-- @structr:protected -->
+				<div class="navbar-header">
+					<!-- @structr:protected -->
+					<button class="navbar-toggle collapsed" type="button" data-target="#navbar" data-toggle="collapse"><!-- @structr:protected --><span class="sr-only"><!-- @structr:protected -->Toggle navigation</span><!-- @structr:protected --><span class="icon-bar"></span><!-- @structr:protected --><span class="icon-bar"></span><!-- @structr:protected --><span class="icon-bar"></span></button><!-- @structr:protected --><a class="navbar-brand" href="#"><!-- @structr:protected -->${page.name}</a>
+				</div>
+				<!-- @structr:protected -->
+				<div class="navbar-collapse collapse" id="navbar"></div><!--/.navbar-collapse -->
+			</div>
+		</nav><!-- Main jumbotron for a primary marketing message or call to action -->
+		<!-- @structr:protected -->
+		<div align="middle" class="jumbotron">
+			<!-- @structr:protected -->
+			<div class="container">
+				<!-- @structr:protected -->
+				<h1><!-- @structr:protected -->Learning Outcomes</h1>
+				<!-- @structr:protected -->
+				<p><!-- @structr:protected -->A tangible measurable outcome that can be used as a benchmark for learning. Click on each item below to add dependencies between learning outcomes.</p>
+			</div>
+			<!-- @structr:private -->
+			<div>
+				<!-- @structr:private -->
+				<iframe src="http://localhost:8002/" width="1000" height="400">
+					<!-- @structr:private -->
+					<button class="[Button Look] [Button Type]"><!-- @structr:private -->[Button Text]</button>
+				</iframe>
+			</div>
+		</div align="middle">
+		<!-- @structr:private -->
+		<div>
+			<!-- @structr:private -->
+			<div>
+				<!-- @structr:private -->
+				<script type="text/javascript"><!-- @structr:private, @structr:content(text/javascript) -->document.write(&#39;&lt;script src=&quot;/structr/js/lib/typeahead-jquery-0.11.min.js&quot;&gt;&lt;\/script&gt;&#39;);</script>
+				<!-- @structr:private -->
+				<style type="text/css"><!-- @structr:private, @structr:content(text/css) -->
+    .tt-menu {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      width: 300px;
+      font-size: 9pt;
+    }
+    .tt-suggestion {
+      width: 100%;
+      cursor: pointer;
+    }
+    .tt-cursor {
+      background-color: #e5e5e5;
+    }
+  </style>
+				<!-- @structr:private -->
+				<input class="form-control" id="typeahead-input" placeholder="Find.." type="text">
+				<!-- @structr:private -->
+				<script type="text/javascript"><!-- @structr:private, @structr:content(text/javascript) -->
+    $(function() {
+
+        $(&#39;#typeahead-input&#39;).typeahead({
+
+        minLength: 1,
+        highlight: true
+
+      }, {
+
+        source: function (query, sync, async) {
+          $.ajax({
+            url: &#39;/structr/rest/Topic/_graph?name=&#39; + query + &#39;&amp;loose=1&#39;,
+            method: &#39;GET&#39;,
+            statusCode: {
+              200: function(data) {
+                async(data.result);
+              }
+            }
+          });
+        },
+        display: function(input) {
+          return input.name + &#39; (&#39; + input.type + &#39;)&#39;;
+        },
+        templates: {
+            suggestion: function(result) {
+              return &#39;&lt;div&gt;&lt;strong&gt;&#39; + result.type + &#39;&lt;/strong&gt;: &#39; + result.name + &#39;&lt;/div&gt;&#39;;
+            }
+        },
+        limit: 30
+      });
+    });</script>
+			</div>
+			<!-- @structr:private -->
+			<button class="[Button Look] [Button Type]" data-structr-confirm="false" data-structr-reload="true"><!-- @structr:private -->Explore</button>
+		</div>
+		<!-- @structr:protected -->
+		<div class="container"><!-- Example row of columns -->
+			<!-- @structr:protected -->
+			<div class="row">
+				<!-- @structr:protected -->
+				<div class="col-md-4" data-structr-id="${topic.id}" data-structr-meta-data-key="topic" data-structr-meta-rest-query="Topic">
+					<!-- @structr:protected -->
+					<p data-structr-meta-name="p"><!-- @structr:protected --><a class="btn btn-default" role="button" href="/Topic/${topic.id}"><!-- @structr:protected, @structr:content(text/html) -->&lt;strong&gt;${topic.name}&lt;/strong&gt;</a></p>
+				</div>
+				<!-- @structr:private -->
+				<p data-structr-id="${topic.id}" data-structr-meta-data-key="topic" data-structr-meta-rest-query="Topic"></p>
+			</div>
+			<!-- @structr:private -->
+			<h3><!-- @structr:private -->Create a new Learning Outcome</h3>
+			<!-- @structr:private -->
+			<div>
+				<!-- @structr:private -->
+				<div class="panel-body" data-structr-id="${topic.id}">
+					<!-- @structr:private -->
+					<div class="form-group">
+						<!-- @structr:private -->
+						<label><!-- @structr:private -->Name 
+							<!-- @structr:private -->
+							<br>
+						</label>
+						<!-- @structr:private -->
+						<input placeholder="Enter the name of Learning Outcome here" class="form-control" type="text" data-structr-name="name">
+					</div>
+					<!-- @structr:private -->
+					<div class="form-group">
+						<!-- @structr:private -->
+						<label><!-- @structr:private -->Description
+							<!-- @structr:private -->
+							<br>
+						</label><!-- @structr:private --><textarea placeholder="Describe the Learning Outcome here" class="form-control" data-structr-name="description"></textarea placeholder="Describe the Learning Outcome here">
+					</div>
+					<!-- @structr:private -->
+					<div class="form-group">
+						<!-- @structr:private -->
+						<button class="btn btn-default" data-structr-action="create:Topic" data-structr-attributes="name, description" data-structr-reload="true"><!-- @structr:private -->Create</button>
+					</div>
+					<!-- @structr:private -->
+					<div class="alert alert-success alert-dismissable info-box success hidden" data-structr-dialog="success">
+						<!-- @structr:private -->
+						<button class="close" type="button" data-dismiss="alert"><!-- @structr:private -->×</button>
+					</div>
+					<!-- @structr:private -->
+					<div class="alert alert-warning alert-dismissable info-box error hidden" data-structr-dialog="error">
+						<!-- @structr:private -->
+						<button class="close" type="button" data-dismiss="alert"><!-- @structr:private -->×</button>
+					</div>
+				</div>
+			</div>
+			<!-- @structr:protected -->
+			<hr>
+			<!-- @structr:protected -->
+			<footer>
+				<!-- @structr:protected -->
+				<p><!-- @structr:protected -->© 2016 Company, Inc.</p>
+			</footer>
+		</div><!-- /container --><!-- Bootstrap core JavaScript
+    ================================================== --><!-- Placed at the end of the document so the pages load faster -->
+		<!-- @structr:protected, @structr:link(/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js_2017-02-22-183828) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+		<!-- @structr:protected, @structr:link(/ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js_2017-02-22-183828) -->
+		<script type="text/javascript"><!-- @structr:protected, @structr:content(text/javascript) -->window.jQuery || document.write(&#39;&lt;script src=&quot;../../assets/js/vendor/jquery.min.js&quot;&gt;&lt;\/script&gt;&#39;)</script>
+		<!-- @structr:protected, @structr:link(/dist/js/bootstrap.min.js_2017-02-22-183829) -->
+		<script src="${link.path}" type="text/javascript"></script><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<!-- @structr:protected, @structr:link(/assets/js/ie10-viewport-bug-workaround.js_2017-02-22-183830) -->
+		<script src="${link.path}" type="text/javascript"></script>
+	</body>
+</html>

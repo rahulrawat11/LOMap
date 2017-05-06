@@ -1,0 +1,39 @@
+{
+  "Login": {
+    "visibleToPublicUsers": true,
+    "visibleToAuthenticatedUsers": false,
+    "contentType": "text/html",
+    "position": 1,
+    "showOnErrorCodes": "404",
+    "dontCache": false,
+    "pageCreatesRawData": false
+  },
+  "REGISTER": {
+    "visibleToPublicUsers": false,
+    "visibleToAuthenticatedUsers": true,
+    "contentType": "text/html",
+    "dontCache": false,
+    "pageCreatesRawData": false
+  },
+  "Topic": {
+    "visibleToPublicUsers": false,
+    "visibleToAuthenticatedUsers": true,
+    "contentType": "text/html",
+    "dontCache": false,
+    "pageCreatesRawData": false
+  },
+  "Topics": {
+    "visibleToPublicUsers": true,
+    "visibleToAuthenticatedUsers": true,
+    "contentType": "text/html",
+    "dontCache": false,
+    "pageCreatesRawData": false
+  },
+  "Topics-testing": {
+    "visibleToPublicUsers": true,
+    "visibleToAuthenticatedUsers": true,
+    "contentType": "text/html",
+    "dontCache": false,
+    "pageCreatesRawData": false
+  }
+}

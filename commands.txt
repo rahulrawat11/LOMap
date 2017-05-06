@@ -1,0 +1,8 @@
+for exporting the deployment server:
+
+curl -HX-User:admin -HX-Password:admin http://localhost:8082/structr/rest/maintenance/deploy -d '{mode:export, target: /path_to/my-structr-app}'
+
+for importing:
+
+curl -HX-User:admin -HX-Password:admin http://localhost:8082/structr/rest/maintenance/deploy -d '{"mode":"import", "source": "/path_to/my-structr-app"}'
+
